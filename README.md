@@ -1,41 +1,48 @@
 # WinCarcerate
 
-> 🚨 **DISCLAIMER:**  
-> This software is provided **solely** for research, educational, and defensive-security purposes.  
-> Do **not** run WinCarcerate against any system you do not own or have **explicit** permission to test.  
-> Unauthorized or malicious use is **illegal** and the authors disclaim any liability for damages or legal consequences arising from misuse.
+> [!WARNING]
+> For research, education, and authorized defensive security testing only.
+> Do not use on systems you do not own or lack permission to assess.
+> The author is not responsible for misuse or resulting damage.
 
-[![wincarcerate.png](https://i.postimg.cc/JnnD9zXz/wincarcerate.png)](https://postimg.cc/p9wLjxkw)
-
-**WinCarcerate** is a compact (~15 KB) Windows ransomware sample demonstrating thread pools, ChaCha20 encryption, and anti-analysis techniques. For training and research only.
+**`WinCarcerate`** is a simulated ransomware payload for Windows. It implements a thread-safe producer-consumer design pattern, optimized for performance and accelerated using [AES-NI](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) intrinsics.
 
 ## Build 
 
-Open the **Developer Command Prompt for Visual Studio 2022**, run `Build.bat`, and follow the interactive prompts.
+Open the **Developer PowerShell for VS 2022**, run `Builder.ps1`, and follow the interactive prompts.
 
 ```
-C:\Tools\WinCarcerate>Build.bat
+C:\Tools\WinCarcerate>.\Builder.ps1
+
+888       888 d8b           .d8888b.                                                   888
+888   o   888 Y8P          d88P  Y88b                                                  888
+888  d8b  888              888    888                                                  888
+888 d888b 888 888 88888b.  888         8888b.  888d888 .d8888b .d88b.  888d888 8888b.  888888 .d88b.
+888d88888b888 888 888 "88b 888            "88b 888P"  d88P"   d8P  Y8b 888P"      "88b 888   d8P  Y8b
+88888P Y88888 888 888  888 888    888 .d888888 888    888     88888888 888    .d888888 888   88888888
+8888P   Y8888 888 888  888 Y88b  d88P 888  888 888    Y88b.   Y8b.     888    888  888 Y88b. Y8b.
+888P     Y888 888 888  888  "Y8888P"  "Y888888 888     "Y8888P "Y8888  888    "Y888888  "Y888 "Y8888
+
+
 
 === WinCarcerate Build (Release|x64) ===
 
-Toolchain: [M]SVC or [L]LVM? M
-Executable: [L]ocker or [D]ecryptor? L
-SubSystem: [C]onsole or [W]indows? C
-Enable Debugger Evasion: [Y]es or [N]o? Y
-Enable Self Deletion: [Y]es or [N]o? Y
-Root directory for encryption/decryption [Enter = current]: C:\Temp
+Toolset: [M]SVC or [L]LVM/Clang-cl?: M
+Build [L]ocker or [D]ecryptor?: L
+Enable logging? [Y]es or [N]o?: Y
 
-Build started 10/12/2025 5:09:22 PM.
+  Toolset : v143
+  Target  : Locker
+  Logging : True
+  Defines : /DLOCKER /DLOG_TO_CONSOLE
+
+Build started 4/26/2026 3:46:22 AM.
 ```
 
-Each run of `Build.bat` produces a single output binary at `x64\Release\WinCarcerate.exe`. If you need both Locker and Decryptor variants for a lab, run the build twice and preserve the first output before rebuilding so it is not overwritten.
+Each run of `Builder.ps1` produces a single output binary at `x64\Release\WinCarcerate.exe`. If you need both Locker and Decryptor variants for a lab, run the build twice and preserve the first output before rebuilding so it is not overwritten.
 
-Building with the LLVM toolchain requires [MSBuild support for LLVM (clang-cl) toolset](https://learn.microsoft.com/en-us/cpp/build/clang-support-msbuild?view=msvc-170). Compiling as a **Console** application prints encryption progress and total runtime to stdout; the **Windows** subsystem produces a smaller, quieter binary (no console output).
 
 ## Usage
 
-No command-line arguments are required. On launch, `WinCarcerate.exe` recursively encrypts or decrypts files starting at the build-time root directory. 
-
-[![wincarcerate-demo.gif](https://i.postimg.cc/j5gPYRn3/wincarcerate-demo.gif)](https://postimg.cc/qhKz8VL2)
-
+No command-line arguments are required. On launch, `WinCarcerate.exe` automatically identifies all local drives and recursively encrypts the filesystem from each drive root. Upon completion, a mock ransom note is displayed, then the binary deletes itself from disk.
 

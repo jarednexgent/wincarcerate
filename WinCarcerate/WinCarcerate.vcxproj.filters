@@ -15,49 +15,77 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chacha20.c">
+    <ClCompile Include="Aes128Ctr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.c">
+    <ClCompile Include="Debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cryptor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="memutils.c">
+    <ClCompile Include="Bootstrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="threadpool.c">
+    <ClCompile Include="Queue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="antianalysis.c">
+    <ClCompile Include="Search.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Workers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Teardown.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="chacha20.h">
+    <ClInclude Include="Aes128Ctr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="memutils.h">
+    <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="override.h">
+    <ClInclude Include="Debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="threadpool.h">
+    <ClInclude Include="Cryptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stringshims.h">
+    <ClInclude Include="Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="crypto.h">
+    <ClInclude Include="Search.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="peb.h">
+    <ClInclude Include="Workers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="antianalysis.h">
+    <ClInclude Include="Bootstrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Teardown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinCarcerate.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="wallpaper.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

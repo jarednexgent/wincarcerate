@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f9701fcf-5b78-41a6-82b8-3eb4fcbb54a9}</ProjectGuid>
+    <ProjectGuid>{d943541b-20d0-41b7-a1a9-9b5283de7162}</ProjectGuid>
     <RootNamespace>WinCarcerate</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>WinCarcerate</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -80,6 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,9 +107,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -120,44 +127,63 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <Optimization>MaxSpeed</Optimization>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FavorSizeOrSpeed>
-      </FavorSizeOrSpeed>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <FloatingPointModel>Default</FloatingPointModel>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <BasicRuntimeChecks />
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableUAC>false</EnableUAC>
+      <EntryPointSymbol>WinMain</EntryPointSymbol>
+      <LinkStatus>
+      </LinkStatus>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>main</EntryPointSymbol>
-      <AdditionalDependencies>Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <AdditionalDependencies>libcmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="antianalysis.c" />
-    <ClCompile Include="chacha20.c" />
-    <ClCompile Include="crypto.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </AdditionalOptions>
+    <ClCompile Include="Aes128Ctr.c" />
+    <ClCompile Include="Common.c">
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
     </ClCompile>
+    <ClCompile Include="Debug.c" />
+    <ClCompile Include="Cryptor.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="memutils.c" />
-    <ClCompile Include="threadpool.c" />
+    <ClCompile Include="Bootstrap.c" />
+    <ClCompile Include="Queue.c" />
+    <ClCompile Include="Teardown.c" />
+    <ClCompile Include="Search.c" />
+    <ClCompile Include="Workers.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="antianalysis.h" />
-    <ClInclude Include="chacha20.h" />
-    <ClInclude Include="crypto.h" />
-    <ClInclude Include="memutils.h" />
-    <ClInclude Include="override.h" />
-    <ClInclude Include="peb.h" />
-    <ClInclude Include="threadpool.h" />
-    <ClInclude Include="stringshims.h" />
+    <ClInclude Include="Aes128Ctr.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="Cryptor.h" />
+    <ClInclude Include="Bootstrap.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Teardown.h" />
+    <ClInclude Include="Search.h" />
+    <ClInclude Include="Workers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinCarcerate.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="wallpaper.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
